@@ -1,0 +1,41 @@
+{
+  "name": "mazel",
+  "main": "portal/src/index.js",
+  "compatibility_date": "2026-01-01",
+  "build": {
+    "command": "node portal/bin/deploy-guard.mjs"
+  },
+  "kv_namespaces": [
+    {
+      "binding": "MAILBOX","id": "27ba6be6264b4c39b62b0f5f255e97a2"
+    }
+  ],
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "PORTAL",
+        "class_name": "Portal"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "do-v1",
+      "new_sqlite_classes": [
+        "Portal"
+      ]
+    }
+  ],
+  "triggers": {
+    "crons": [
+      "*/30 * * * *"
+    ]
+  },
+  "vars": {
+    "RELAY_URL": "https://relay.mazel-peer.workers.dev",
+    "STORE": "do"
+  },
+  "observability": {
+    "enabled": true
+  }
+}
